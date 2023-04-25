@@ -29,6 +29,12 @@ class Auteur
         $this->livres = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getNom().' '.$this->getPrenom();
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

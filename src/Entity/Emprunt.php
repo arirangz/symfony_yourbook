@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EmpruntRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -30,6 +31,9 @@ class Emprunt
 
     #[ORM\Column]
     private ?bool $statut = null;
+
+    private ?\DateTimeInterface $date_previsionnelle = null;
+
 
     public function getId(): ?int
     {
@@ -94,5 +98,18 @@ class Emprunt
         $this->statut = $statut;
 
         return $this;
+    }
+
+    public function setDatePrevisionnelle(): self
+    {
+        $datePrevisionnelle = DateTime::createFromInterface($this->getDateEmprunt());
+        $datePrevisionnelle->modify('+20days');
+        $this->setDatePrevisionnelle($datePrevisionnelle);
+        return $this;
+    }
+
+    public function getDatePrevisionnelle(): ?\DateTimeInterface
+    {
+        return $this->date_previsionnelle;
     }
 }
