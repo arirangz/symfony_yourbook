@@ -11,8 +11,10 @@ class PageController extends AbstractController
     #[Route('/', name: 'app_page')]
     public function index(): Response
     {
+        $test = "toto";
         return $this->render('page/index.html.twig', [
             'controller_name' => 'PageController',
+            'maVarTest' => $test
         ]);
     }
 }
